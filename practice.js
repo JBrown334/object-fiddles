@@ -25,7 +25,7 @@ var favoriteThings = {
   band: "Ret Hot Chili Peppers",
   food: "Broccoli",
   person: "Jenna",
-  book: "Old Mand and the Sea",
+  book: "Old Man and the Sea",
   movie: "The Godfather",
   holiday: "Labor Day"
 };
@@ -33,14 +33,14 @@ var favoriteThings = {
 //After you've made your object, add another key named 'car' with the value being your favorite car and then another key named 'brand' with the value being your favorite brand.
 
   //Code here
-  favoriteThings.car = "1980's Toyota Land Cruiser";
-  favoriteThings.brand = "Herschel";
+ favoriteThings.car = "1980's Toyota Land Cruiser";
+ favoriteThings.brand = "Herschel";
 
 //Now change the food key in your favoriteThings object to be 'Lettuce' and change the book key in your favoriteThings object to be '50 Shades of Gray'.
 
   //Code here
-favoriteThings.food = "Lettuce";
-favoriteThings.book = "50 Shades of Gray";
+ favoriteThings.food = "Lettuce";
+ favoriteThings.book = "50 Shades of Gray";
 
 
 
@@ -60,7 +60,7 @@ that is named color, with the value being the color of your backpack. */
   var backPack = {};
   var item = 'firstPocket';
   backPack[item] = 'chapstick';
-
+  backPack.color = 'black';
 //After you do the above, alert your entire backPack object.
 
   //Code here
@@ -86,22 +86,21 @@ Instead, console.log your whole backPack object and then check out the console. 
   var alsoMe = {
     name: 'Joe',
     age: '31',
-    height: '5 foot 11 inches',
+    height: '5\'11"',
     gender: 'male',
     married: 'yes',
     eyeColor: 'brown',
-    hairColor: 'brown',
+    hairColor: 'brown'
   };
 //Now, loop through your object and alert every value. *Tyler --> 24 --> 6'0 --> Male, etc etc
 
   //Code Here
 
-function loopObj1(obj){
-  for (var i in obj){
-  alert(i);
- }
-}
-loopObj1(alsoMe);
+
+  for (var prop in alsoMe){
+    alert(prop + ' : ' + alsoMe[prop]);
+  }
+
 
 
 
@@ -114,14 +113,16 @@ loopObj1(alsoMe);
 
   //Code Here
   var album = {
-    jammin: '5:33',
-    redredwine: '3:33',
-    oldman: '7:43',
-    hustlin: '5:49',
-    codebop: '8:00'
+    jammin: '',
+    redredwine: '',
+    oldman: '',
+    hustlin: '',
+    codebop: ''
   };
 //Now, loop through your album object alerting every song title individually.
-
+  for (var key in album){
+    alert(key);
+  }
 
 
 
@@ -134,10 +135,22 @@ loopObj1(alsoMe);
 //Create an object called states that has 5 US states as properties with the values being their population (doesn't have to be accurate).
 
   //Code Here
+  var states = {
+    Utah: 1500000,
+    Arizona: 2000000,
+    Oregon: 1200000,
+    California: 4000000,
+    Washington: 4
+  };
 
 //Now, loop through your states object and if the states population is greater than 30K, alert that state.
 
   //Code Here
+  for(key in states){
+    if (states[key] > 30000){
+      alert(key);
+    }
+  }
 
 
 
@@ -159,12 +172,18 @@ var user1 = {
 that each value is truthy. If it's not truthy, remove it from the object. */
 
   //Code Here
+  for(key in user1){
+    if(!user1[key]){
+      delete user1[key];
+    }
+  }
 
 //Once you get your truthy Object, Change the remaining values in the object to be specific to you (name: 'your name', username: 'your username'), rather than my information.
 
   //Code Here
-
-
+  user1.name = 'Joe';
+  user1.username = 'j33';
+  user1.pwHash = '33';
 
 
 //NEXT PROBLEM
@@ -187,11 +206,13 @@ var user2 = {
 // name -> 'Tyler S. McGinnis', email -> 'tyler.mcginnis@devmounta.in'. Make that change.
 
   //Code Here
+  user2.name = 'Tyler S. McGinnis';
+  user2.email = 'tyler.mcginnis@devmounta.in';
 
 //Now call the sayName method that's on the user object which will alert the users email
 
   //Code Here
-
+user2.sayName();
 
 
 
@@ -203,6 +224,14 @@ var user2 = {
 //Create an empty object called methodCollection.
 
   //Code Here
+  var methodCollection = {
+    alertHello: function(){
+      alert('hello');
+    },
+    logHello: function(){
+      console.log('hello');
+    }
+  };
 
 /*Now add two methods (functions that are properties on objects) to your methodCollection
 object. One called 'alertHello' which alerts 'hello' and another method called logHello
@@ -210,10 +239,12 @@ object. One called 'alertHello' which alerts 'hello' and another method called l
 
   //Code Here
 
+
 //Now call your alertHello and logHello methods.
 
   //Code Here
-
+methodCollection.alertHello();
+methodCollection.logHello();
 
 
 //NEXT PROBLEM
@@ -224,7 +255,14 @@ object. One called 'alertHello' which alerts 'hello' and another method called l
 // parameters and returns a new object with all of the information that you passed in.
 
   //Code Here
+  function makePerson(name, birthday, ssn){
 
+    return {
+      name: name,
+      birthday: birthday,
+      ssn: ssn
+    };
+  }
 
 
 //NEXT PROBLEM
@@ -234,6 +272,13 @@ object. One called 'alertHello' which alerts 'hello' and another method called l
 // Create a function called makeCard which takes in cardNumber, expirationDate, and securityCode to make a Credit Card object and returns that object so that whenever you invoke makeCard, you get a brand new credit card.
 
   //Code Here
+  function makeCard(cardNumber, expirationDate, securityCode){
+    return {
+      cardNumber: cardNumber,
+      expirationDate: expirationDate,
+      securityCode: securityCode
+    };
+  }
 
 
 
@@ -247,3 +292,20 @@ object. One called 'alertHello' which alerts 'hello' and another method called l
 */
 
   //Code Here
+  function bindCard(person, creditcard){
+    var newObj = {};
+
+    for (key in person){
+      newObj[key] = person[key];
+    }
+
+    for (key in creditcard){
+      newObj[key] = creditcard[key];
+    }
+
+    return newObj;
+  }
+
+  var joe = makePerson('Joe', 'Dec 3', '123');
+  var myCard = makeCard('333', '333', '123');
+  var bindedObj = bindCard(joe, myCard);
